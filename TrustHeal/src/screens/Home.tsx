@@ -11,10 +11,6 @@ const Home = ({navigation}) => {
     {label: 'Canceled', value: 'CANCELED'},
     {label: 'All Consultations', value: 'All Consultations'},
   ]);
-  useEffect(() => {
-    // setValue(null);
-    console.log(value);
-  }, []);
   const handleNavigation = () => {
     navigation.navigate('DetailScreen', {
       type: value,

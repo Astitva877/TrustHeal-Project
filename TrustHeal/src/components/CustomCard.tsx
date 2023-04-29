@@ -18,28 +18,10 @@ interface propTypes {
 const CustomCard = (props: propTypes) => {
   let sp1 = props.specialization[0];
   let sp2 = props.specialization[1];
-  // useEffect(() => {
-  //   console.log(props.specialization);
-  //   console.log(sp2);
-  // });
   return (
-    // <View style={{flex: 1}}>
     <View style={styles.container}>
-      <View
-        style={{
-          height: '70%',
-          width: '100%',
-          //   backgroundColor: 'red',
-          flexDirection: 'row',
-        }}>
-        <View
-          style={{
-            height: '100%',
-            width: '25%',
-            // backgroundColor: 'blue',
-            justifyContent: 'center',
-            // alignItems: 'center',
-          }}>
+      <View style={styles.upperView}>
+        <View style={styles.imageView}>
           <Image
             style={styles.logo}
             source={{
@@ -47,13 +29,7 @@ const CustomCard = (props: propTypes) => {
             }}
           />
         </View>
-        <View
-          style={{
-            height: '100%',
-            width: '75%',
-            // backgroundColor: 'yellow',
-            justifyContent: 'space-evenly',
-          }}>
+        <View style={styles.infoView}>
           <Text style={{fontSize: 16, fontWeight: 'bold', color: '#000000'}}>
             Doctor Name: {props.doctorName}
           </Text>
@@ -131,6 +107,21 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   lowerView: {height: '30%', width: '100%'},
+  upperView: {
+    height: '70%',
+    width: '100%',
+    flexDirection: 'row',
+  },
+  imageView: {
+    height: '100%',
+    width: '25%',
+    justifyContent: 'center',
+  },
+  infoView: {
+    height: '100%',
+    width: '75%',
+    justifyContent: 'space-evenly',
+  },
 });
 
 export default CustomCard;

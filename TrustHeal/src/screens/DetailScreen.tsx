@@ -2,11 +2,9 @@ import React, {useEffect, useState} from 'react';
 import {Text, View, StyleSheet, FlatList, TouchableOpacity} from 'react-native';
 import CustomCard from '../components/CustomCard';
 import {DATA} from '../sampledata/SampleData';
-// import DATA from '../sampledata/SampleData';
-const DetailScreen = ({route, navigation}) => {
+const DetailScreen = ({route}) => {
   const [medium, setMedium] = useState('');
   const {type} = route.params;
-  // const mainData: object[] = [];
   const [mainData, setMainData] = useState([]);
   const [newData, setNewData] = useState([]);
   useEffect(() => {
@@ -18,29 +16,14 @@ const DetailScreen = ({route, navigation}) => {
       }
     });
     setMainData(temp);
-    // const temp2: object[] = [];
-    // mainData.forEach(item => {
-    //   if (item.consultationType === medium) {
-    //     temp2.push(item);
-    //   }
-    //   console.log(item);
-    // });
-    // setMainData(temp2);
-    console.log(mainData);
   }, []);
-  // const handleVideo = () => {
-  //   setMedium('VIDEO_CALL');
-  // };
   useEffect(() => {
     const temp: object[] = [];
     mainData.forEach(item => {
       if (item.consultationType === medium) {
         temp.push(item);
-        // console.log(item);
       }
     });
-    console.log(mainData);
-    console.log(temp);
     setNewData(temp);
   }, [medium]);
   const renderItem = ({item}) => (
@@ -63,14 +46,9 @@ const DetailScreen = ({route, navigation}) => {
       <View style={styles.upperView}>
         <Text style={styles.headingText}>{type}</Text>
       </View>
-      <View
-        style={{
-          flex: 0.1,
-          flexDirection: 'row',
-          justifyContent: 'space-evenly',
-          alignItems: 'center',
-        }}>
+      <View style={styles.topView}>
         <TouchableOpacity
+          // eslint-disable-next-line react-native/no-inline-styles
           style={{
             width: '25%',
             height: '60%',
@@ -85,6 +63,7 @@ const DetailScreen = ({route, navigation}) => {
           <Text>Video Call</Text>
         </TouchableOpacity>
         <TouchableOpacity
+          // eslint-disable-next-line react-native/no-inline-styles
           style={{
             width: '25%',
             height: '60%',
@@ -99,6 +78,7 @@ const DetailScreen = ({route, navigation}) => {
           <Text>Phone Call</Text>
         </TouchableOpacity>
         <TouchableOpacity
+          // eslint-disable-next-line react-native/no-inline-styles
           style={{
             width: '25%',
             height: '60%',
@@ -113,13 +93,11 @@ const DetailScreen = ({route, navigation}) => {
           <Text>Physical</Text>
         </TouchableOpacity>
       </View>
-      <View style={{flex: 0.8, alignItems: 'center'}}>
-        {/* <CustomCard /> */}
+      <View style={styles.lowerView}>
         <FlatList
           data={medium === '' ? mainData : newData}
           renderItem={renderItem}
           keyExtractor={item => item.consultationId}
-          // showsVerticalScrollIndicator={false}
         />
       </View>
     </View>
@@ -139,4 +117,11 @@ const styles = StyleSheet.create({
     backgroundColor: '#ffffff',
   },
   headingText: {fontSize: 22, fontWeight: 'bold', color: '#000000'},
+  topView: {
+    flex: 0.1,
+    flexDirection: 'row',
+    justifyContent: 'space-evenly',
+    alignItems: 'center',
+  },
+  lowerView: {flex: 0.8, alignItems: 'center'},
 });
